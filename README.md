@@ -12,6 +12,10 @@ npm install
 npm start
 ```
 
+http://localhost:3000 にアクセスすればデフォルトの画面が見れるはず．
+
+以下はReactプロジェクト作成時に生成されるデフォルトの文章．とりあえず残してるけど，無視していい．
+
 ## Available Scripts
 
 In the project directory, you can run:
