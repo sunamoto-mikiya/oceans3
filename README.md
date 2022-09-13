@@ -2,13 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 立ち上げ方法
+## 起動方法
 
 ```
 # パッケージのインストール
 npm install
 
-# 立ち上げ
+# 起動
 npm start
 ```
 
