@@ -1,13 +1,22 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Form from "./pages/Form";
 import Rank from "./pages/Rank";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
+import Register from "./pages/Register";
+import Reregistration from "./pages/Reregistration";
 import { useEffect, useState } from "react";
 import { getPosts } from "./api/jsonplaceholder";
 import Detail, { loader as detailLoader } from "./pages/Detail";
+import LoginRouter from "./pages/LoginRouter";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -30,6 +39,14 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "login/register",
+      element: <Register />,
+    },
+    {
+      path: "login/reregistration",
+      element: <Reregistration />,
     },
     {
       path: "/",
