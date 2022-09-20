@@ -1,13 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  Button,
-  Container,
-  Stack,
-  TextField,
-  Typography,
-  Link,
-} from "@mui/material";
+import { Button, Container, Stack, TextField, Link } from "@mui/material";
 import axios from "axios";
 
 class Login extends React.Component {
@@ -76,8 +69,10 @@ class Login extends React.Component {
             >
               ログイン
             </Button>
-            <Link href="#">新規登録</Link>
-            <Link href="#">パスワードを忘れた方はこちら</Link>
+            <Link href={"login/register"}>新規登録</Link>
+            <Link href={"login/reregistration"}>
+              パスワードを忘れた方はこちら
+            </Link>
           </Stack>
         </Container>
       </div>
