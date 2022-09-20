@@ -4,7 +4,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/Home';
-import About from './pages/About';
+import Form from './pages/Form';
+import Rank from './pages/Rank';
 import { useEffect, useState } from 'react';
 import { getPosts } from './api/jsonplaceholder';
 import Detail, { loader as detailLoader } from './pages/Detail';
@@ -29,8 +30,12 @@ function App() {
       element: <Home posts={posts} />,
     },
     {
-      path: "/about",
-      element: <About />,
+      path: "/form",
+      element: <Form />,
+    },
+    {
+      path: "/rank",
+      element: <Rank />,
     },
     {
       path: "/detail/:id",
