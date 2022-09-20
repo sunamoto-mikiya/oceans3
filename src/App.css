@@ -48,7 +48,6 @@ nav.navbar {
   height: 3rem;
   border-bottom: 1px solid #CCC;
   box-shadow: 1px 1px 3px #CCC;
-  margin: 0 0 0 auto;
 }
 nav.navbar .header-item {
   color: #777;
@@ -65,4 +64,10 @@ nav.navbar a {
 }
 nav.navbar a:hover {
   color: #0072ff;
+}
+
+.f-container { 
+  display: flex; 
+  justify-content:
+  flex-end; 
 }
