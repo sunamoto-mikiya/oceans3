@@ -1,30 +1,36 @@
-import './App.css';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Home from './pages/Home';
-import Form from './pages/Form';
-import Rank from './pages/Rank';
-import { useEffect, useState } from 'react';
-import { getPosts } from './api/jsonplaceholder';
-import Detail, { loader as detailLoader } from './pages/Detail';
-
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import Form from "./pages/Form";
+import Rank from "./pages/Rank";
+import Login from "./pages/Login";
+import Test from "./pages/Test";
+import { useEffect, useState } from "react";
+import { getPosts } from "./api/jsonplaceholder";
+import Detail, { loader as detailLoader } from "./pages/Detail";
 
 function App() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([]);
 
   // ページの初回レンダリング時に実行
   useEffect(() => {
-    const initPosts = async() => {
-      const fetchedPosts = await getPosts()
-      setPosts(fetchedPosts)
-    }
-    initPosts()
-  }, [])
+    const initPosts = async () => {
+      const fetchedPosts = await getPosts();
+      setPosts(fetchedPosts);
+    };
+    initPosts();
+  }, []);
 
   // ルーティング
   const router = createBrowserRouter([
+    {
+      path: "/Test",
+      element: <Test />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
     {
       path: "/",
       element: <Home posts={posts} />,
@@ -41,7 +47,7 @@ function App() {
       path: "/detail/:id",
       element: <Detail />,
       loader: detailLoader,
-    }
+    },
   ]);
 
   return (
