@@ -91,7 +91,6 @@ const Login = () => {
             ログイン
           </Button>
           <Link href={"/register"}>新規登録</Link>
-          <Link href={"/reregistration"}>パスワードを忘れた方はこちら</Link>
         </Stack>
       </Container>
     </div>

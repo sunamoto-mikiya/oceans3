@@ -10,14 +10,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { stateAtom } from "../components/stateAtom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [errorMessage, setErrorMessage] = useState("");
-
   const [isRegistering, setIsRegistering] = useState(false);
 
   const onSubmit = async () => {
@@ -70,8 +67,7 @@ const Register = () => {
           >
             新規登録
           </Button>
-          <Link href={"/login"}>ログイン</Link>
-          <Link href={"/reregistration"}>パスワードを忘れた方はこちら</Link>
+          <Link href={"/login"}>登録済みの方はこちら</Link>
         </Stack>
       </Container>
     </div>
