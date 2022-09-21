@@ -37,7 +37,7 @@ const Login = () => {
       setIsRegistering(true);
 
       const res = await axios
-        .post("http://localhost:81/api/login", {
+        .post(`${process.env.REACT_APP_API_BASE_URL}/login`, {
           email,
           password,
         })
@@ -65,6 +65,15 @@ const Login = () => {
     <div className="login">
       <Container maxWidth="sm" sx={{ pt: 5 }}>
         <Stack spacing={3}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1>ログイン</h1>
+          </div>
           <TextField
             required
             label="mail"

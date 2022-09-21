@@ -1,6 +1,10 @@
 import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
 import { getWantedImage } from "../api/wanted-image";
+import { RecoilRoot, useRecoilState } from "recoil";
+import { isLoginAtom } from "../components/isLoginAtom";
+import { userIdAtom } from "../components/userIdAtom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { userIdAtom } from "../components/userIdAtom";
@@ -39,6 +43,32 @@ export default function Home() {
     };
     initUser();
   }, [userId]);
+
+const Wrapper = styled("div")({
+  textAlign: "center",
+  margin: "50px",
+});
+
+const Img = styled("img")({
+  width: "80%",
+  maxWidth: "500px",
+  textAlign: "center",
+});
+}
+
+export default function Home() {
+  const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const [userId, setUserId] = useRecoilState(userIdAtom);
+  const navigate = useNavigate();
+  const [wantedImageUrl, setWantedImageUrl] = useState("");
+
+  useEffect(() => {
+    const initImageUrl = async () => {
+      const fetchedImage = await getWantedImage(2);
+      setWantedImageUrl(fetchedImage.imageUrl);
+    };
+    initImageUrl();
+  }, []);
 
   return (
     <>

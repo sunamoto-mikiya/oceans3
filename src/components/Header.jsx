@@ -1,17 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { RecoilRoot, useRecoilState } from "recoil";
-import { userIdAtom } from "../components/userIdAtom";
 import { isLoginAtom } from "../components/isLoginAtom";
-import Login from "../pages/Login";
 
 export default function Header() {
-  const [userId, setUserId] = useRecoilState(userIdAtom);
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const navigate = useNavigate();
-
-  // console.log("ユーザーID", userId);
-  // console.log("ログインフラグ", isLogin);
 
   return isLogin ? (
     <nav className="navbar f-container">
@@ -41,5 +35,4 @@ export default function Header() {
   ) : (
     navigate("/login")
   );
-
 }

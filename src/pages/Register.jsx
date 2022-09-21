@@ -20,7 +20,7 @@ const Register = () => {
   const onSubmit = async () => {
     try {
       setIsRegistering(true);
-      const res = await axios.post("http://localhost:81/api/register", {
+      const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/register`, {
         email,
         password,
       });
@@ -39,6 +39,15 @@ const Register = () => {
     <div className="register">
       <Container maxWidth="sm" sx={{ pt: 5 }}>
         <Stack spacing={3}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1>新規登録</h1>
+          </div>
           <TextField
             required
             label="mail"

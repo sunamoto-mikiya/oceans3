@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+env:
+  CI: false
+
 jobs:
   deploy:
     name: Build & Deploy
@@ -24,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: npm run build-production
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
