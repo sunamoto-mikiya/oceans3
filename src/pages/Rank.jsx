@@ -5,11 +5,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 
 export default function Rank() {
-  const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
 
-  const handleShow = (id) => {
-    console.log(id);
-  };
+    const handleShow = (id) => {
+        console.log(id);
+    };
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 50 },
@@ -37,7 +37,7 @@ export default function Rank() {
 
     const getUserData = () => {
         axios
-            .get('http://localhost:81/api/rank')
+            .get(`${process.env.REACT_APP_API_BASE_URL}/rank`)
             .then(response => {
                 setUsers(response.data);
                 console.log(response.data);
