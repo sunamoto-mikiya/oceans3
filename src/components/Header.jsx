@@ -11,13 +11,13 @@ export default function Header() {
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const navigate = useNavigate();
 
-  console.log("ユーザーID", userId);
-  console.log("ログインフラグ", isLogin);
+  // console.log("ユーザーID", userId);
+  // console.log("ログインフラグ", isLogin);
 
   return isLogin ? (
     <nav className="navbar f-container">
       <NavLink
-        exact
+        end
         to="/"
         className="header-item f-item"
         activeClassName="active"
