@@ -35,8 +35,12 @@ jobs:
 
       - name: Deploy to S3
         run: aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET_NAME }}
-
-      - name: CloudFront Cache Clear
-        run: CFID=$(aws cloudfront list-distributions --query "DistributionList.Items[].{Id:Id,Origin:Origins.Items[0].DomainName}[?contains(Origin,'${{ secrets.AWS_S3_BUCKET_NAME }}.s3')] | [0].Id" | sed 's/"//g')
-          echo "aws cloudfront create-invalidation ${CFID}"
-          aws cloudfront create-invalidation --distribution-id ${CFID} --paths "/*"
+ 
+      - name: Clear cache in CloudFront
+        uses: chetan/invalidate-cloudfront-action@v1.2
+        env:
+          DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+          PATHS: "/*"
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
