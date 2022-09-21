@@ -133,10 +133,10 @@ export default function Form() {
       setDatabases(fetchedDatabases);
       setServices(fetchedServices);
 
-      const fetchedUserLanguages = await getUserLanguages(2);
-      const fetchedUserFrameworks = await getUserFrameworks(2);
-      const fetchedUserDatabases = await getUserDatabases(2);
-      const fetchedUserServices = await getUserServices(2);
+      const fetchedUserLanguages = await getUserLanguages(userId);
+      const fetchedUserFrameworks = await getUserFrameworks(userId);
+      const fetchedUserDatabases = await getUserDatabases(userId);
+      const fetchedUserServices = await getUserServices(userId);
       setLanguage1(fetchedUserLanguages[0]);
       setLanguage2(fetchedUserLanguages[1]);
       setLanguage3(fetchedUserLanguages[2]);
