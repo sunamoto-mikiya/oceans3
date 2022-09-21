@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import {
   Button,
@@ -13,14 +13,24 @@ import { useState } from "react";
 import { RecoilRoot, useRecoilState } from "recoil";
 import { userIdAtom } from "../components/userIdAtom";
 import { isLoginAtom } from "../components/isLoginAtom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState();
+  const [isRegistering, setIsRegistering] = useState(false);
   const [userId, setUserId] = useRecoilState(userIdAtom);
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("ユーザーID:", userId);
+  }, [userId]);
+
+  useEffect(() => {
+    console.log("ログインフラグ:", isLogin);
+  }, [isLogin]);
 
   const onSubmit = async () => {
     try {
@@ -32,10 +42,15 @@ const Login = () => {
           password,
         })
         .then((response) => {
-          setUserId(response.userId);
+          setUserId(response.data.userId);
           setIsLogin(true);
+          console.log("レスポンスの中身", response.data);
+          console.log("ユーザーID", response.data.userId);
+        })
+        .finally(() => {
+          navigate("/");
         });
-      window.location.href = "/";
+      // window.location.href = "/";
       //.catch(e=>this.setState({error:e.response.data.errors}))
     } catch (e) {
       console.log(e.response.data.errors);
@@ -69,10 +84,7 @@ const Login = () => {
             color="primary"
             type="button"
             variant="contained"
-            onClick={() => {
-              console.log({ isLogin });
-              onSubmit();
-            }}
+            onClick={onSubmit}
             size="large"
             disabled={isRegistering}
           >
