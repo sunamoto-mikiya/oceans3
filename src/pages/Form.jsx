@@ -196,7 +196,7 @@ export default function Form() {
       ])
     );
     axios
-      .post("http://localhost:81/api/user/2/wanted", data, {
+      .post(`http://localhost:81/api/user/${userId}/wanted`, data, {
         header: {
           "Content-Type": "multipart/form-data",
         },
