@@ -1,84 +1,86 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Button, Container, Stack, TextField, Link } from "@mui/material";
+import {
+  Button,
+  Container,
+  Stack,
+  TextField,
+  Typography,
+  Link,
+} from "@mui/material";
 import axios from "axios";
+import { useState } from "react";
 
-class Login extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      error: [],
-    };
-    this.setemail = this.setemail.bind(this);
-    this.setpassword = this.setpassword.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  setemail(e) {
-    this.setState({ email: e.target.value });
-  }
+  const [errorMessage, setErrorMessage] = useState("");
 
-  setpassword(e) {
-    this.setState({ password: e.target.value });
-  }
+  const [isRegistering, setIsRegistering] = useState(false);
 
-  onSubmit(e) {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("email", this.state.email ? this.state.email : "");
-    data.append("password", this.state.password ? this.state.password : "");
-    axios
-      .post("http://localhost:81/api/login", data)
-      .then((res) => {})
+  const onSubmit = async () => {
+    try {
+      setIsRegistering(true);
+
+      const res = await axios
+        .post("http://localhost:81/api/login", {
+          email,
+          password,
+        })
+        .then((response) => {
+          console.log(response);
+        });
+      window.location.href = "/";
       //.catch(e=>this.setState({error:e.response.data.errors}))
-      .catch((e) => {
-        console.log(e.response.data.errors);
-      });
-  }
-  render() {
-    return (
-      <div className="register">
-        <Container maxWidth="sm" sx={{ pt: 5 }}>
-          <Stack spacing={3}>
-            <form onSubmit={this.onSubmit} encType="multipart/form-data"></form>
-            <TextField
-              required
-              label="mail"
-              defaultValue=""
-              type="email"
-              value={this.state.email}
-              onChange={this.setemail}
-            />
-            <TextField
-              label="password"
-              defaultValue=""
-              type="password"
-              value={this.state.password}
-              onChange={this.setpassword}
-            />
-            <Button
-              color="primary"
-              type="submit"
-              variant="contained"
-              onClick={() => {
-                console.log(this.state);
-              }}
-              size="large"
-            >
-              ログイン
-            </Button>
-            <Link href={"login/register"}>新規登録</Link>
-            <Link href={"login/reregistration"}>
-              パスワードを忘れた方はこちら
-            </Link>
-          </Stack>
-        </Container>
-      </div>
-    );
-  }
-}
+    } catch (e) {
+      console.log(e.response.data.errors);
+      // TODO: しかるべきエラーメッセージを、APIレスポンスから取り出して設定
+      setErrorMessage("エラーが発生しました。時間をおいて再度お試しください。");
+    } finally {
+      setIsRegistering(false);
+    }
+  };
+
+  return (
+    <div className="login">
+      <Container maxWidth="sm" sx={{ pt: 5 }}>
+        <Stack spacing={3}>
+          <TextField
+            required
+            label="mail"
+            defaultValue=""
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            label="password"
+            defaultValue=""
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button
+            color="primary"
+            type="button"
+            variant="contained"
+            onClick={() => {
+              console.log(email, password);
+              onSubmit();
+            }}
+            size="large"
+            disabled={isRegistering}
+          >
+            ログイン
+          </Button>
+          <Link href={"/register"}>新規登録</Link>
+          <Link href={"/reregistration"}>パスワードを忘れた方はこちら</Link>
+        </Stack>
+      </Container>
+    </div>
+  );
+};
 
 export default Login;
 

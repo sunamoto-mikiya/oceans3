@@ -9,83 +9,73 @@ import {
   Link,
 } from "@mui/material";
 import axios from "axios";
+import { useState } from "react";
 
-class Register extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      error: [],
-    };
-    this.setemail = this.setemail.bind(this);
-    this.setpassword = this.setpassword.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  setemail(e) {
-    this.setState({ email: e.target.value });
-  }
+  const [errorMessage, setErrorMessage] = useState("");
 
-  setpassword(e) {
-    this.setState({ password: e.target.value });
-  }
+  const [isRegistering, setIsRegistering] = useState(false);
 
-  onSubmit(e) {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("email", this.state.email ? this.state.email : "");
-    data.append("password", this.state.password ? this.state.password : "");
-    axios
-      .post("http://localhost:81/api/login", data)
-      .then((res) => {})
-      //.catch(e=>this.setState({error:e.response.data.errors}))
-      .catch((e) => {
-        console.log(e.response.data.errors);
+  const onSubmit = async () => {
+    try {
+      setIsRegistering(true);
+      const res = await axios.post("http://localhost:81/api/register", {
+        email,
+        password,
       });
-  }
-  render() {
-    return (
-      <div className="register">
-        <Container maxWidth="sm" sx={{ pt: 5 }}>
-          <Stack spacing={3}>
-            <form onSubmit={this.onSubmit} encType="multipart/form-data"></form>
-            <TextField
-              required
-              label="mail"
-              defaultValue=""
-              type="email"
-              value={this.state.email}
-              onChange={this.setemail}
-            />
-            <TextField
-              label="password"
-              defaultValue=""
-              type="password"
-              value={this.state.password}
-              onChange={this.setpassword}
-            />
-            <Button
-              color="primary"
-              type="submit"
-              variant="contained"
-              onClick={() => {
-                console.log(this.state);
-              }}
-              size="large"
-            >
-              新規登録
-            </Button>
-            <Link href={"/login"}>ログイン</Link>
-            <Link href={"/login/reregistration"}>
-              パスワードを忘れた方はこちら
-            </Link>
-          </Stack>
-        </Container>
-      </div>
-    );
-  }
-}
+      window.location.href = "/login";
+      //.catch(e=>this.setState({error:e.response.data.errors}))
+    } catch (e) {
+      console.log(e.response.data.errors);
+      // TODO: しかるべきエラーメッセージを、APIレスポンスから取り出して設定
+      setErrorMessage("エラーが発生しました。時間をおいて再度お試しください。");
+    } finally {
+      setIsRegistering(false);
+    }
+  };
+
+  return (
+    <div className="register">
+      <Container maxWidth="sm" sx={{ pt: 5 }}>
+        <Stack spacing={3}>
+          <TextField
+            required
+            label="mail"
+            defaultValue=""
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            label="password"
+            defaultValue=""
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button
+            color="primary"
+            type="button"
+            variant="contained"
+            onClick={() => {
+              console.log(email, password);
+              onSubmit();
+            }}
+            size="large"
+            disabled={isRegistering}
+          >
+            新規登録
+          </Button>
+          <Link href={"/login"}>ログイン</Link>
+          <Link href={"/reregistration"}>パスワードを忘れた方はこちら</Link>
+        </Stack>
+      </Container>
+    </div>
+  );
+};
 
 export default Register;
 

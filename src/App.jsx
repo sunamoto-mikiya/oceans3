@@ -16,7 +16,6 @@ import Reregistration from "./pages/Reregistration";
 import { useEffect, useState } from "react";
 import { getPosts } from "./api/jsonplaceholder";
 import Detail, { loader as detailLoader } from "./pages/Detail";
-import LoginRouter from "./pages/LoginRouter";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -41,11 +40,11 @@ function App() {
       element: <Login />,
     },
     {
-      path: "login/register",
+      path: "/register",
       element: <Register />,
     },
     {
-      path: "login/reregistration",
+      path: "/reregistration",
       element: <Reregistration />,
     },
     {
