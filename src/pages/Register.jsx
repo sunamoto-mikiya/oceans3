@@ -39,6 +39,15 @@ const Register = () => {
     <div className="register">
       <Container maxWidth="sm" sx={{ pt: 5 }}>
         <Stack spacing={3}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1>新規登録</h1>
+          </div>
           <TextField
             required
             label="mail"
