@@ -14,6 +14,7 @@ export default function Rank() {
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
     { field: "name", headerName: "名前", width: 300 },
+
     {
       field: "score",
       headerName: "懸賞金($)",
@@ -44,7 +45,8 @@ export default function Rank() {
 
   const getUserData = () => {
     axios
-      .get("http://localhost:81/api/rank")
+
+      .get(`${process.env.REACT_APP_API_BASE_URL}/rank`)
       .then((response) => {
         setUsers(response.data);
         console.log(response.data);
@@ -59,6 +61,7 @@ export default function Rank() {
   users.forEach((user) =>
     rows.push({
       id: user.id,
+      image: user.user_image_url,
       name: user.name,
       score: user.score,
     })
@@ -72,7 +75,13 @@ export default function Rank() {
       </div>
       <div>
         <div
-          style={{ height: 400, width: "70%", margin: "auto", width: "50%" }}
+          style={{
+            color: "#ff8f00",
+            height: 400,
+            width: "70%",
+            margin: "auto",
+            width: "50%",
+          }}
         >
           <DataGrid
             rows={rows}
