@@ -1,16 +1,15 @@
 import Header from "../components/Header";
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { DataGrid } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
 
 export default function Rank() {
+  const [users, setUsers] = useState([]);
 
-    const [users, setUsers] = useState([]);
-
-    const handleShow = (id) => {
-        console.log(id)
-    }
+  const handleShow = (id) => {
+    console.log(id);
+  };
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 50 },

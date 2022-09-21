@@ -10,6 +10,17 @@ import Detail, { loader as detailLoader } from "./pages/Detail";
 import { RecoilRoot } from "recoil";
 
 function App() {
+  const [posts, setPosts] = useState([]);
+
+  // ページの初回レンダリング時に実行
+  //レンダリング遅らせる
+  useEffect(() => {
+    const initPosts = async () => {
+      setPosts();
+    };
+    initPosts();
+  }, []);
+
   // ルーティング
   const router = createBrowserRouter([
     {
