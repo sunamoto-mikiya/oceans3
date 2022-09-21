@@ -28,19 +28,19 @@ export default function Rank() {
             sortable: false,
             width: 120,
             disableClickEventBubbling: true,
-            renderCell: (params) => <Button variant="contained" color="primary" 
-            onClick={() => handleShow(params.id)} href={`/detail/${params.id}`}>詳細</Button>
+            renderCell: (params) => <Button variant="contained" color="primary"
+                onClick={() => handleShow(params.id)} href={`/detail/${params.id}`}>詳細</Button>
         },
     ];
     useEffect(() => {
         getUserData();
-    },[])
+    }, [])
 
     const getUserData = () => {
         axios
             .get('http://localhost:81/api/rank')
             .then(response => {
-                setUsers(response.data);  
+                setUsers(response.data);
                 console.log(response.data);
             })
             .catch(() => {
@@ -49,7 +49,7 @@ export default function Rank() {
     }
 
     let rows = [];
-    
+
     users.forEach((user) =>
         rows.push({
             id: user.id,
@@ -68,16 +68,15 @@ export default function Rank() {
                 </h2>
             </div>
             <div>
-                <div style={{ height: 400, width: '70%' ,margin:'auto',width:'50%'}} >
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
+                <div style={{ height: 400, width: '70%', margin: 'auto', width: '50%' }} >
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={5}
+                        rowsPerPageOptions={[5]}
                     />
                 </div>
-            </div> 
-            <Footer />
+            </div>
         </>
     )
 }
