@@ -9,10 +9,14 @@ export default function Rank() {
 
     const [users, setUsers] = useState([]);
 
+    const handleShow = (id) => {
+        console.log(id)
+    }
+
     const columns = [
         { field: 'id', headerName: 'ID', width: 50 },
         { field: 'image', headerName: '写真', width: 80 },
-        { field: 'name', headerName: '名前', width: 280 },
+        { field: 'name', headerName: '名前', width: 250 },
         {
             field: 'score',
             headerName: '懸賞金($)',
@@ -21,11 +25,12 @@ export default function Rank() {
         },
         {
             field: 'editBtn',
-            headerName: '詳細',
+            headerName: 'ユーザー詳細',
             sortable: false,
-            width: 90,
+            width: 120,
             disableClickEventBubbling: true,
-            renderCell: (params) => <Button variant="contained" color="primary">詳細</Button>
+            renderCell: (params) => <Button variant="contained" color="primary" 
+            onClick={() => handleShow(params.id)} href={`/detail/${params.id}`}>詳細</Button>
         },
     ];
     useEffect(() => {
@@ -58,8 +63,8 @@ export default function Rank() {
     return (
         <>
             <Header />
-            <div class="centering_parent">
-                <h2 class="centering_item">
+            <div className="centering_parent">
+                <h2 className="centering_item">
                     ユーザー一覧
                 </h2>
             </div>
