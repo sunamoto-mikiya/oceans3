@@ -8,6 +8,8 @@ import Register from "./pages/Register";
 import { useEffect, useState } from "react";
 import Detail, { loader as detailLoader } from "./pages/Detail";
 import { RecoilRoot } from "recoil";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -20,6 +22,29 @@ function App() {
     };
     initPosts();
   }, []);
+
+  const theme = createTheme({
+    palette: {
+      background: {
+        default: "#fff9c4",
+      },
+      primary: {
+        main: "#212121",
+        contrastText: "#f5f5f5",
+        light: "#f5f5f5",
+      },
+      secondary: {
+        main: "#212121",
+      },
+      text: {
+        primary: "#212121",
+      },
+      info: {
+        main: "#212121",
+        light: "#212121",
+      },
+    },
+  });
 
   // ルーティング
   const router = createBrowserRouter([
@@ -51,11 +76,14 @@ function App() {
   ]);
 
   return (
-    <RecoilRoot>
-      <>
-        <RouterProvider router={router} />
-      </>
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RecoilRoot>
+        <>
+          <RouterProvider router={router} />
+        </>
+      </RecoilRoot>
+    </ThemeProvider>
   );
 }
 
