@@ -21,7 +21,6 @@ function App() {
     };
     initPosts();
   }, []);
->>>>>>> 25a781d691cf9ffdd75edeac573794f4985f0a00
 
   // ルーティング
   const router = createBrowserRouter([
