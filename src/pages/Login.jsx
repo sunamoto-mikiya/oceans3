@@ -53,6 +53,7 @@ const Login = () => {
       // window.location.href = "/";
       //.catch(e=>this.setState({error:e.response.data.errors}))
     } catch (e) {
+      navigate("/login");
       console.log(e.response.data.errors);
       // TODO: しかるべきエラーメッセージを、APIレスポンスから取り出して設定
       setErrorMessage("エラーが発生しました。時間をおいて再度お試しください。");
