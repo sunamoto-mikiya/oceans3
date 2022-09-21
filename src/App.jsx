@@ -10,9 +10,7 @@ import Home from "./pages/Home";
 import Form from "./pages/Form";
 import Rank from "./pages/Rank";
 import Login from "./pages/Login";
-import Test from "./pages/Test";
 import Register from "./pages/Register";
-import Reregistration from "./pages/Reregistration";
 import { useEffect, useState } from "react";
 import { getPosts } from "./api/jsonplaceholder";
 import Detail, { loader as detailLoader } from "./pages/Detail";
@@ -32,20 +30,12 @@ function App() {
   // ルーティング
   const router = createBrowserRouter([
     {
-      path: "/Test",
-      element: <Test />,
-    },
-    {
       path: "/login",
       element: <Login />,
     },
     {
       path: "/register",
       element: <Register />,
-    },
-    {
-      path: "/reregistration",
-      element: <Reregistration />,
     },
     {
       path: "/",
