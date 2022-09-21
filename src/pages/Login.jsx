@@ -37,7 +37,7 @@ const Login = () => {
       setIsRegistering(true);
 
       const res = await axios
-        .post("http://localhost:81/api/login", {
+        .post(`${process.env.REACT_APP_API_BASE_URL}/login`, {
           email,
           password,
         })

@@ -143,7 +143,7 @@ export default function Form() {
       ])
     );
     axios
-      .post("http://localhost:81/api/user/2/wanted", data, {
+      .post(`${process.env.REACT_APP_API_BASE_URL}/user/2/wanted`, data, {
         header: {
           "Content-Type": "multipart/form-data",
         },
