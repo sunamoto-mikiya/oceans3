@@ -14,6 +14,7 @@ import Register from "./pages/Register";
 import { useEffect, useState } from "react";
 import { getPosts } from "./api/jsonplaceholder";
 import Detail, { loader as detailLoader } from "./pages/Detail";
+import { RecoilRoot } from "recoil";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -57,9 +58,11 @@ function App() {
   ]);
 
   return (
-    <>
-      <RouterProvider router={router} />
-    </>
+    <RecoilRoot>
+      <>
+        <RouterProvider router={router} />
+      </>
+    </RecoilRoot>
   );
 }
 

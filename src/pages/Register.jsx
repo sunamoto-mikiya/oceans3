@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import { stateAtom } from "../components/stateAtom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
