@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { store } from "../api/oceans";
 import { getDatabases, getFrameworks, getLanguages, getServices, getUserDatabases, getUserFrameworks, getUserLanguages, getUserServices } from "../api/skill";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Skill from "../components/Skill";
 
@@ -148,6 +147,7 @@ export default function Form() {
             {/* <h1>プロフィール入力</h1> */}
             {/* <h2>名前 (ローマ字)</h2> */}
             <Container>
+                <AlignSection><h2>基本情報</h2></AlignSection>
                 <Section>
                 <TextField
                     error={nameError}
@@ -204,13 +204,16 @@ export default function Form() {
                 </DateSection>
                 <AlignSection>
                 {/* <h2>プロフィール画像</h2> */}
-                <label for="user_image">プロフィール画像</label> <br/>
+                <label htmlFor="user_image">プロフィール画像</label> <br/>
                 <input id="user_image" type="file" onChange={(event) => userImageHandler(event)} />
                 </AlignSection>
 
                 <AlignSection>
 
+                <br/>
+                <br/>
                 <h2>技術スタック</h2>
+                <p>選べる技術には限りがあるため、特に自信のある技術を選びましょう！</p>
                 <h3>言語</h3>
                 <Skill options={languages} name={language1.name} level={language1.level} setSkill={setLanguage1} />
                 <Skill options={languages} name={language2.name} level={language2.level} setSkill={setLanguage2} />
@@ -231,7 +234,6 @@ export default function Form() {
                 <Button variant="contained" sx={{marginTop: "50px"}} onClick={submitHandler} disabled={nameError}>変更</Button>
                 </AlignSection>
             </Container>
-            <Footer />
         </>
     )
 }
