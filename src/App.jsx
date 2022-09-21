@@ -5,11 +5,21 @@ import Form from "./pages/Form";
 import Rank from "./pages/Rank";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import Detail, { loader as detailLoader } from "./pages/Detail";
 import { RecoilRoot } from "recoil";
 
 function App() {
+  const [posts, setPosts] = useState([]);
+
+  // ページの初回レンダリング時に実行
+  //レンダリング遅らせる
+  useEffect(() => {
+    const initPosts = async () => {
+      setPosts();
+    };
+    initPosts();
+  }, []);
   // ルーティング
   const router = createBrowserRouter([
     {

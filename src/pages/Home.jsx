@@ -19,18 +19,10 @@ const Img = styled("img")({
 });
 
 export default function Home() {
-  const [wantedImageUrl, setWantedImageUrl] = useState("");
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [userId, setUserId] = useRecoilState(userIdAtom);
   const navigate = useNavigate();
-  const useDelay = (msec) => {
-    const [waiting, setWaiting] = useState(true);
-    useEffect(() => {
-      setTimeout(() => setWaiting(false), msec);
-    }, []);
-    return waiting;
-  };
-  const waiting = useDelay(200);
+  const [wantedImageUrl, setWantedImageUrl] = useState("");
 
   useEffect(() => {
     const initImageUrl = async () => {
@@ -43,15 +35,13 @@ export default function Home() {
   return (
     <>
       <Header />
-      {waiting && (
-        <Wrapper>
-          {wantedImageUrl === "" ? (
-            <h1>プロフィールを入力して手配書を作ろう！！</h1>
-          ) : (
-            <Img src={wantedImageUrl} alt="手配書" />
-          )}
-        </Wrapper>
-      )}
+      <Wrapper>
+        {wantedImageUrl === "" ? (
+          <h1>プロフィールを入力して手配書を作ろう！！</h1>
+        ) : (
+          <Img src={wantedImageUrl} alt="手配書" />
+        )}
+      </Wrapper>
     </>
   );
 }
