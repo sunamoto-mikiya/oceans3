@@ -25,11 +25,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("ユーザーID:", userId);
+    // console.log("ユーザーID:", userId);
   }, [userId]);
 
   useEffect(() => {
-    console.log("ログインフラグ:", isLogin);
+    // console.log("ログインフラグ:", isLogin);
   }, [isLogin]);
 
   const onSubmit = async () => {
@@ -65,6 +65,15 @@ const Login = () => {
     <div className="login">
       <Container maxWidth="sm" sx={{ pt: 5 }}>
         <Stack spacing={3}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1>ログイン</h1>
+          </div>
           <TextField
             required
             label="mail"
