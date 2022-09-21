@@ -34,7 +34,7 @@ function App() {
     },
     {
       path: "/",
-      element: <Home posts={posts} />,
+      element: <Home />,
     },
     {
       path: "/form",

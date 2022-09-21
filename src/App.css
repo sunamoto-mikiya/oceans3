@@ -71,3 +71,7 @@ nav.navbar a:hover {
   justify-content:
   flex-end; 
 }
+
+.centering_parent {            
+  text-align:  center;      
+}
