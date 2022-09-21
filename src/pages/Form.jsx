@@ -35,6 +35,7 @@ const AlignSection = styled('div')({
 })
 
 export default function Form() {
+
     const navigate = useNavigate();
     const [userName, setUserName] = useState('')
     const [affiliation, setAffiliation] = useState('')
