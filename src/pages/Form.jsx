@@ -116,42 +116,7 @@ export default function Form() {
       setService3(fetchedUserServices[2])
     }
     init()
-    // console.log(userName)
   }, [userId])
-
-  // api
-  // skills取得
-  // user取得
-  useEffect(() => {
-    const init = async () => {
-      const fetchedLanguages = await getLanguages();
-      const fetchedFrameworks = await getFrameworks();
-      const fetchedDatabases = await getDatabases();
-      const fetchedServices = await getServices();
-      setLanguages(fetchedLanguages);
-      setFrameworks(fetchedFrameworks);
-      setDatabases(fetchedDatabases);
-      setServices(fetchedServices);
-
-      const fetchedUserLanguages = await getUserLanguages(userId);
-      const fetchedUserFrameworks = await getUserFrameworks(userId);
-      const fetchedUserDatabases = await getUserDatabases(userId);
-      const fetchedUserServices = await getUserServices(userId);
-      setLanguage1(fetchedUserLanguages[0]);
-      setLanguage2(fetchedUserLanguages[1]);
-      setLanguage3(fetchedUserLanguages[2]);
-      setFramework1(fetchedUserFrameworks[0]);
-      setFramework2(fetchedUserFrameworks[1]);
-      setFramework3(fetchedUserFrameworks[2]);
-      setDatabase1(fetchedUserDatabases[0]);
-      setDatabase2(fetchedUserDatabases[1]);
-      setDatabase3(fetchedUserDatabases[2]);
-      setService1(fetchedUserServices[0]);
-      setService2(fetchedUserServices[1]);
-      setService3(fetchedUserServices[2]);
-    };
-    init();
-  }, []);
 
   const submitHandler = async () => {
     const data = new FormData();
