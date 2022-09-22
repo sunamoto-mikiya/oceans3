@@ -26,7 +26,7 @@ export default function Home() {
 
   useEffect(() => {
     const initImageUrl = async () => {
-      const fetchedImage = await getWantedImage(2);
+      const fetchedImage = await getWantedImage(userId);
       setWantedImageUrl(fetchedImage.imageUrl);
     };
     initImageUrl();

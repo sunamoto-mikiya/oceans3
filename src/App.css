@@ -73,5 +73,15 @@ nav.navbar a:hover {
 }
 
 .centering_parent {            
-  text-align:  center;      
+  text-align: center;      
+}
+
+.userShow {
+  text-align: center;
+  
+}
+
+.showText {
+  margin: auto;
+  width: 50%;
 }

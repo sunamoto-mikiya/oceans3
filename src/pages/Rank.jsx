@@ -13,13 +13,13 @@ export default function Rank() {
 
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
-    { field: "image", headerName: "写真", width: 80 },
-    { field: "name", headerName: "名前", width: 250 },
+    { field: "name", headerName: "名前", width: 300 },
+
     {
       field: "score",
       headerName: "懸賞金($)",
       type: "number",
-      width: 120,
+      width: 140,
     },
     {
       field: "editBtn",
@@ -45,6 +45,7 @@ export default function Rank() {
 
   const getUserData = () => {
     axios
+
       .get(`${process.env.REACT_APP_API_BASE_URL}/rank`)
       .then((response) => {
         setUsers(response.data);

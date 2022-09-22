@@ -6,6 +6,7 @@ import Rank from "./pages/Rank";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useEffect, useState } from "react";
+import { getUsers } from "./api/getUserInfo";
 import Detail, { loader as detailLoader } from "./pages/Detail";
 import { RecoilRoot } from "recoil";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
