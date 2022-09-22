@@ -11,10 +11,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
 
 export async function loader({ params }) {
   return params.id;
@@ -30,6 +26,7 @@ export default function Detail({ params }) {
   useEffect(() => {
     const initUser = async () => {
       const response = await getUser(userId);
+      console.log(response);
       setUser(response.user);
       setSkills(response.skills);
     };
