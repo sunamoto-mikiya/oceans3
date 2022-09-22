@@ -37,8 +37,6 @@ export default function Detail({ params }) {
     return <div>Not Found</div>;
   }
 
-  console.log(skills);
-
   return (
     <Card
       sx={{
@@ -53,13 +51,16 @@ export default function Detail({ params }) {
         <div className="userShow">
           <CardContent sx={{ flex: "1 0 auto", mt: 10 }}>
             <Typography component="div" variant="h6">
-              名前：{user.name}
+              {user.name}
             </Typography>
             <Typography variant="h6" component="div">
-              懸賞金：${user.score}
+              ${user.score}
             </Typography>
             <Typography component="div" variant="h6">
-              githubリンク：{user.github}test
+              githubリンク：
+              <a href={user.github} target="_blank">
+                {user.github}
+              </a>
             </Typography>
             <Typography component="div" variant="h6">
               使用技術
